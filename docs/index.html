@@ -147,13 +147,14 @@
     @media(max-width:640px){.scene-action-wrap{margin-top:12px;padding-top:10px}.scene-action{min-height:40px}}
     .recommendation .rec-ranking-note{padding:11px 12px;border-left:2px solid #b3975c;background:rgba(243,241,232,.68)}
     .recommendation .rec-ranking-note p+p{margin-top:7px}
-</style>
+    .brand-story{margin-top:20px;max-width:285px}.brand-story-label{display:flex;align-items:center;gap:9px;font:10px/1.5 sans-serif;letter-spacing:.18em;color:var(--rose)}.brand-story-label:before{content:"";width:23px;height:1px;background:var(--gold)}.brand-story p{font:12px/1.8 sans-serif;color:var(--muted);margin:6px 0 0;max-width:280px}@media(max-width:820px){.brand-story{margin-top:12px;max-width:520px}.brand-story p{max-width:480px}}
+  </style>
 </head>
 <body>
   <div class="shell">
     <header class="topbar"><div class="brand"><span class="brandmark" aria-hidden="true">玉</span><span>玉礼指南</span></div><nav class="topnav" aria-label="页面导航"><button type="button" data-page="home" class="active">首页</button><button type="button" data-page="scenes">送礼场景</button><button type="button" data-page="catalogue">24 类品类</button></nav></header>
     <main class="layout" id="homeView">
-      <section class="intro"><div class="eyebrow">GIFTING, MADE PERSONAL</div><h1>把心意，<br><em>选得恰好。</em></h1><p>根据收礼对象、场合、预算与审美偏好，比较翡翠、和田玉、其他玉石和彩色宝石礼物方向。</p><div class="seal" aria-label="以心择礼">以心<br>择礼<br>· 玉 ·</div></section>
+      <section class="intro"><div class="eyebrow">GIFTING, MADE PERSONAL</div><h1>把心意，<br><em>选得恰好。</em></h1><p>根据收礼对象、场合、预算与审美偏好，比较翡翠、和田玉、其他玉石和彩色宝石礼物方向。</p><div class="seal" aria-label="以心择礼">以心<br>择礼<br>· 玉 ·</div><div class="brand-story"><span class="brand-story-label">东方礼意 · 当代审美</span><p>以材质与器型呈现东方韵味，也从收礼人的喜好寻找合宜表达。</p></div></section>
       <section class="flow" aria-live="polite">
         <div class="home-panel" id="homePanel"><div class="eyebrow">CHOOSE YOUR WAY</div><h2>从哪里开始？</h2><p>可以回答几个问题获取个性建议，也可以直接按送礼情境或品类查找灵感。</p><div class="entry-grid"><button class="entry-card" type="button" data-page="quiz"><span class="entry-icon" aria-hidden="true"><img data-home-image="开始个性推荐" alt="" loading="lazy" decoding="async"></span><span class="entry-copy"><b>开始个性推荐</b><small>回答 3–5 个问题，按对象、场合、预算和风格整理礼物方向</small></span><span class="entry-arrow" aria-hidden="true">→</span></button><button class="entry-card" type="button" data-page="scenes"><span class="entry-icon" aria-hidden="true"><img data-home-image="送礼场景速查" alt="" loading="lazy" decoding="async"></span><span class="entry-copy"><b>送礼场景速查</b><small>按长辈、婚庆、乔迁、致谢等 14 类情境快速查看</small></span><span class="entry-arrow" aria-hidden="true">→</span></button><button class="entry-card" type="button" data-page="catalogue"><span class="entry-icon" aria-hidden="true"><img data-home-image="24 类品类地图" alt="" loading="lazy" decoding="async"></span><span class="entry-copy"><b>24 类品类地图</b><small>按材料家族浏览适用方向、特点与选购提醒</small></span><span class="entry-arrow" aria-hidden="true">→</span></button></div><p class="home-footnote">推荐用于选礼灵感；材质、品质与价格请以商品信息和检测结论为准。</p></div>
         <div id="quiz" class="hidden">
@@ -177,7 +178,7 @@
     <main class="library hidden" id="cataloguePage" aria-label="24 类品类页面">
       <button class="page-back" type="button" data-page="home">← 返回首页</button>
       <section class="library-section" id="catalogue" aria-labelledby="catalogueHeading">
-        <div class="library-head"><div><div class="library-kicker">24 MATERIAL DIRECTIONS</div><h2 id="catalogueHeading">24 类材料与礼物方向</h2></div><p>按报告的五个家族浏览。列表中有玉、彩石、印石和其他珠宝材料；“礼物方向”不是材质鉴定或品质评级。</p></div>
+        <div class="library-head"><div><div class="library-kicker">24 MATERIAL DIRECTIONS</div><h2 id="catalogueHeading">24 类材料与礼物方向</h2></div><p>按五个材料家族浏览，从材质、器型与日常审美寻找礼物方向。列表包含玉、彩石、印石及其他珠宝材料；传统寓意只作表达灵感，材质名称与品质请以商品信息和检测结论为准。</p></div>
         <div class="filters" id="familyFilters" role="group" aria-label="筛选材料家族"></div>
         <div class="category-grid" id="categoryGrid"></div>
         <p class="bottom-disclaimer">价格行情和法律规则可能变化，因此这里不把报告中的历史参考价或法律阈值当作固定结论。红珊瑚来源与交易要求需单独核验；无法确认合法来源时不应购买或赠送。砭石相关健康功效不作为推荐依据。</p>
