@@ -514,7 +514,7 @@
       document.getElementById("motifGrid").innerHTML=items.map(item=>{
         const col=item.index%10,row=Math.floor(item.index/10);
         const left=-(col*100),top=-(row*100);
-        return '<article class="motif-card"><div class="motif-thumb" role="img" aria-label="'+item.name+'"><img src="assets/motifs/all-motifs.jpg" alt="" loading="lazy" decoding="async" style="left:'+left+'%;top:'+top+'%"></div><div class="motif-card-copy"><h3>'+item.name+'</h3><p>'+motifMeaning(item.name)+'</p></div></article>';
+        return '<article class="motif-card"><div class="motif-thumb" role="img" aria-label="'+item.name+'"><img src="assets/motifs/all-motifs.jpg" alt="" loading="lazy" decoding="async" style="left:'+left+'%;top:'+top+'%"></div><div class="motif-card-copy"><h3>'+item.name.replace(/_\\d+$/,'')+'</h3><p>'+motifMeaning(item.name)+'</p></div></article>';
       }).join("");
       filters.onclick=event=>{const button=event.target.closest("[data-motif-theme]");if(button)renderMotifs(button.dataset.motifTheme,document.getElementById("motifSearch").value);};
       const search=document.getElementById("motifSearch");
