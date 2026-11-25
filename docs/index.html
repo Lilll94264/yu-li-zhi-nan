@@ -183,15 +183,29 @@
     }
 
     @media(max-width:820px){.intro h1{font-size:clamp(32px,9vw,38px)}}
+    .motif-entry-icon{display:grid;place-items:center;border-radius:50%;background:#e8ede6;color:#244c40;font:20px/1 serif}
+    .motif-filters{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0}
+    .motif-filter{border:1px solid var(--line);border-radius:999px;background:rgba(250,248,242,.8);padding:8px 15px;cursor:pointer;font:13px/1.4 "Noto Sans SC",sans-serif;color:var(--muted)}
+    .motif-filter.active{background:var(--jade);color:white;border-color:var(--jade)}
+    .motif-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+    .motif-card{overflow:hidden;border:1px solid var(--line);border-radius:12px;background:var(--paper2);box-shadow:0 7px 22px rgba(35,53,44,.04)}
+    .motif-card img{display:block;width:100%;aspect-ratio:1;object-fit:cover;background:#eee9de}
+    .motif-card-copy{padding:13px 15px 16px}
+    .motif-card h3{margin:0 0 7px;font-size:18px;font-weight:500}
+    .motif-card p{margin:0;color:var(--muted);font:13px/1.7 "Noto Sans SC",sans-serif}
+    .motif-note{margin-top:22px;padding:13px 15px;background:#e8ede6;color:var(--muted);font:12px/1.7 "Noto Sans SC",sans-serif}
+    #motifsPage{grid-column:1/-1}
+    @media(max-width:820px){.motif-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:520px){.motif-grid{gap:10px}.motif-card-copy{padding:10px 11px 13px}.motif-card h3{font-size:16px}.motif-card p{font-size:12px}.motif-filters{gap:6px}.motif-filter{padding:7px 11px;font-size:12px}}
   </style>
 </head>
 <body>
   <div class="shell">
-    <header class="topbar"><div class="brand"><span class="brandmark" aria-hidden="true">玉</span><span>玉礼指南</span></div><nav class="topnav" aria-label="页面导航"><button type="button" data-page="home" class="active">首页</button><button type="button" data-page="scenes">送礼场景</button><button type="button" data-page="catalogue">24 类品类</button></nav></header>
+    <header class="topbar"><div class="brand"><span class="brandmark" aria-hidden="true">玉</span><span>玉礼指南</span></div><nav class="topnav" aria-label="页面导航"><button type="button" data-page="home" class="active">首页</button><button type="button" data-page="scenes">送礼场景</button><button type="button" data-page="catalogue">24 类品类</button><button type="button" data-page="motifs">纹样寓意</button></nav></header>
     <main class="layout" id="homeView">
       <section class="intro"><div class="eyebrow">GIFTING, MADE PERSONAL</div><h1>把心意，<br><em>选得恰好。</em></h1><p>根据收礼对象、场合、预算与审美偏好，比较翡翠、和田玉、其他玉石和彩色宝石礼物方向。</p><div class="seal" aria-label="以心择礼">以心<br>择礼<br>· 玉 ·</div><div class="brand-story"><span class="brand-story-label">东方礼意 · 当代审美</span><p>以材质与器型呈现东方韵味，也从收礼人的喜好寻找合宜表达。</p></div></section>
       <section class="flow" aria-live="polite">
-        <div class="home-panel" id="homePanel"><div class="eyebrow">CHOOSE YOUR WAY</div><h2>从哪里开始？</h2><p>可以回答几个问题获取个性建议，也可以直接按送礼情境或品类查找灵感。</p><div class="entry-grid"><button class="entry-card" type="button" data-page="quiz"><span class="entry-icon" aria-hidden="true"><img data-home-image="开始个性推荐" alt="" loading="lazy" decoding="async"></span><span class="entry-copy"><b>开始个性推荐</b><small>回答 3–5 个问题，按对象、场合、预算和风格整理礼物方向</small></span><span class="entry-arrow" aria-hidden="true">→</span></button><button class="entry-card" type="button" data-page="scenes"><span class="entry-icon" aria-hidden="true"><img data-home-image="送礼场景速查" alt="" loading="lazy" decoding="async"></span><span class="entry-copy"><b>送礼场景速查</b><small>按长辈、婚庆、乔迁、致谢等 14 类情境快速查看</small></span><span class="entry-arrow" aria-hidden="true">→</span></button><button class="entry-card" type="button" data-page="catalogue"><span class="entry-icon" aria-hidden="true"><img data-home-image="24 类品类地图" alt="" loading="lazy" decoding="async"></span><span class="entry-copy"><b>24 类品类地图</b><small>按材料家族浏览适用方向、特点与选购提醒</small></span><span class="entry-arrow" aria-hidden="true">→</span></button></div><p class="home-footnote">推荐用于选礼灵感；材质、品质与价格请以商品信息和检测结论为准。</p></div>
+        <div class="home-panel" id="homePanel"><div class="eyebrow">CHOOSE YOUR WAY</div><h2>从哪里开始？</h2><p>可以回答几个问题获取个性建议，也可以直接按送礼情境或品类查找灵感。</p><div class="entry-grid"><button class="entry-card" type="button" data-page="quiz"><span class="entry-icon" aria-hidden="true"><img data-home-image="开始个性推荐" alt="" loading="lazy" decoding="async"></span><span class="entry-copy"><b>开始个性推荐</b><small>回答 3–5 个问题，按对象、场合、预算和风格整理礼物方向</small></span><span class="entry-arrow" aria-hidden="true">→</span></button><button class="entry-card" type="button" data-page="scenes"><span class="entry-icon" aria-hidden="true"><img data-home-image="送礼场景速查" alt="" loading="lazy" decoding="async"></span><span class="entry-copy"><b>送礼场景速查</b><small>按长辈、婚庆、乔迁、致谢等 14 类情境快速查看</small></span><span class="entry-arrow" aria-hidden="true">→</span></button><button class="entry-card" type="button" data-page="catalogue"><span class="entry-icon" aria-hidden="true"><img data-home-image="24 类品类地图" alt="" loading="lazy" decoding="async"></span><span class="entry-copy"><b>24 类品类地图</b><small>按材料家族浏览适用方向、特点与选购提醒</small></span><span class="entry-arrow" aria-hidden="true">→</span></button><button class="entry-card" type="button" data-page="motifs"><span class="entry-icon motif-entry-icon" aria-hidden="true">纹</span><span class="entry-copy"><b>玉石纹样寓意</b><small>按平安、福寿、事业、爱情等主题，了解常见纹样表达</small></span><span class="entry-arrow" aria-hidden="true">→</span></button></div><p class="home-footnote">推荐用于选礼灵感；材质、品质与价格请以商品信息和检测结论为准。</p></div>
         <div id="quiz" class="hidden">
           <div class="answer-summary" id="answerSummary" aria-live="polite"></div>
           <div class="flowhead"><span id="stepLabel">问题 1 / 5</span><span id="stepPct">20%</span></div><div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
@@ -219,6 +233,13 @@
         <p class="bottom-disclaimer">价格行情和法律规则可能变化，因此这里不把报告中的历史参考价或法律阈值当作固定结论。红珊瑚来源与交易要求需单独核验；无法确认合法来源时不应购买或赠送。砭石相关健康功效不作为推荐依据。</p>
       </section>
     </main>
+    <section id="motifsPage" class="library hidden" aria-labelledby="motifsHeading">
+      <button class="back-home" type="button" data-page="home">← 返回首页</button>
+      <header class="library-head"><div><div class="eyebrow">JADE MOTIF MEANINGS</div><h2 id="motifsHeading">玉石纹样寓意</h2></div><p>纹样常借助谐音、花鸟瑞兽和传统故事表达祝愿。以下内容按图片名称整理，寓意因地域与个人理解而异，仅供文化欣赏。</p></header>
+      <div class="motif-filters" id="motifFilters" role="group" aria-label="筛选纹样主题"></div>
+      <div class="motif-grid" id="motifGrid"></div>
+      <p class="motif-note">传统寓意属于民俗与文化表达，不代表功效保证；具体玉石材质与品质请以商品信息和检测结论为准。</p>
+    </section>
     <footer class="foot"><span>一份玉礼，贵在合心。</span><span>品类匹配不等于鉴定或估价；文化寓意仅供参考，具体材质请核对商品信息与检测结论。</span></footer>
   </div>
   <script>
@@ -412,8 +433,26 @@
       installImageFallbacks(document.getElementById("categoryGrid"));
     }
     function renderFilters(){const filters=[['all','全部 24 类'],['hard','硬玉'],['traditional','传统名玉'],['colored','彩石与图章石'],['semi','水晶与半宝石'],['organic','有机宝石']];const root=document.getElementById('familyFilters');root.innerHTML=filters.map(([group,label])=>`<button type="button" class="filter-btn${group==='all'?' active':''}" data-group="${group}" aria-pressed="${group==='all'}">${label}</button>`).join('');root.addEventListener('click',event=>{const button=event.target.closest('.filter-btn');if(button)renderCategories(button.dataset.group);});}
-    function showPage(page,prefill={}){const home=document.getElementById('homeView'),scenes=document.getElementById('scenePage'),catalogue=document.getElementById('cataloguePage'),homePanel=document.getElementById('homePanel'),quiz=document.getElementById('quiz'),result=document.getElementById('result');home.classList.toggle('hidden',page==='scenes'||page==='catalogue');scenes.classList.toggle('hidden',page!=='scenes');catalogue.classList.toggle('hidden',page!=='catalogue');homePanel.classList.toggle('hidden',page==='quiz');if(page==='quiz'){result.classList.remove('show');result.innerHTML='';quiz.classList.remove('hidden');Object.keys(answers).forEach(key=>delete answers[key]);Object.assign(answers,prefill);if(answers.who==='newborn')answers.occasion='newborn';const stepsToAsk=activeSteps();current=stepsToAsk.findIndex(step=>!answers[step.key]);if(current<0)current=stepsToAsk.length-1;renderStep()}else if(page==='home'){quiz.classList.add('hidden');result.classList.remove('show');result.innerHTML=''}document.querySelectorAll('.topnav [data-page]').forEach(button=>button.classList.toggle('active',button.dataset.page===page));window.scrollTo({top:0,behavior:'smooth'});}
-    document.querySelectorAll('[data-page]').forEach(button=>button.addEventListener('click',()=>showPage(button.dataset.page)));function advanceQuiz(){clearTimeout(autoAdvanceTimer);autoAdvanceTimer=null;const steps=activeSteps();let nextIndex=current+1;while(nextIndex<steps.length&&answers[steps[nextIndex].key])nextIndex++;if(nextIndex<steps.length){current=nextIndex;renderStep()}else showResult()}next.addEventListener('click',advanceQuiz);back.addEventListener('click',()=>{if(current>0){current--;renderStep()}});renderFilters();renderCategories();renderScenes();renderStep();restoreSharedResult();initializeHomeImages();installImageFallbacks(document);
+    const motifItems=[
+      {file:"motif01.jpg",title:"如意",theme:"吉祥平安",meaning:"以“如意”器形寄托顺心遂意、吉祥安宁的祝愿。"},
+      {file:"motif02.jpg",title:"福禄寿",theme:"福禄寿喜",meaning:"组合福气、俸禄与长寿意象，表达对生活美满、安康长久的祝愿。"},
+      {file:"motif03.jpg",title:"竹报平安",theme:"吉祥平安",meaning:"借竹与“报平安”的传统表达，寓意平安顺遂、家宅安宁。"},
+      {file:"motif04.jpg",title:"松鹤延年",theme:"福禄寿喜",meaning:"松与鹤常用于祝寿题材，寄托健康长寿、清雅高洁之意。"},
+      {file:"motif05.jpg",title:"一帆风顺",theme:"事业学业",meaning:"以扬帆行舟的形象，祝愿行程顺利、事业进展顺遂。"},
+      {file:"motif06.jpg",title:"并蒂莲",theme:"爱情和合",meaning:"并生莲花常用来表达相伴相守、和合美满的祝愿。"},
+      {file:"motif07.jpg",title:"爱情永恒",theme:"爱情和合",meaning:"以爱情为主题，表达长久相伴、珍惜情意的心愿。"},
+      {file:"motif08.jpg",title:"事业有成 · 学业有成",theme:"事业学业",meaning:"寄托学有所成、事业进步的祝愿，适合作为阶段纪念心意。"}
+    ];
+    function renderMotifs(theme="全部"){
+      const themes=["全部","吉祥平安","福禄寿喜","事业学业","爱情和合"];
+      const filters=document.getElementById("motifFilters");
+      filters.innerHTML=themes.map(item=>'<button class="motif-filter'+(item===theme?' active':'')+'" type="button" data-motif-theme="'+item+'" aria-pressed="'+(item===theme)+'">'+item+'</button>').join("");
+      const items=theme==="全部"?motifItems:motifItems.filter(item=>item.theme===theme);
+      document.getElementById("motifGrid").innerHTML=items.map(item=>'<article class="motif-card"><img src="assets/motifs/'+item.file+'" alt="'+item.title+'玉石纹样示例" loading="lazy" decoding="async"><div class="motif-card-copy"><h3>'+item.title+'</h3><p>'+item.meaning+'</p></div></article>').join("");
+      filters.onclick=event=>{const button=event.target.closest("[data-motif-theme]");if(button)renderMotifs(button.dataset.motifTheme);};
+    }
+    function showPage(page,prefill={}){const home=document.getElementById('homeView'),scenes=document.getElementById('scenePage'),catalogue=document.getElementById('cataloguePage'),motifs=document.getElementById('motifsPage'),homePanel=document.getElementById('homePanel'),quiz=document.getElementById('quiz'),result=document.getElementById('result');home.classList.toggle('hidden',page==='scenes'||page==='catalogue'||page==='motifs');scenes.classList.toggle('hidden',page!=='scenes');catalogue.classList.toggle('hidden',page!=='catalogue');motifs.classList.toggle('hidden',page!=='motifs');if(page==='motifs')renderMotifs();homePanel.classList.toggle('hidden',page==='quiz');if(page==='quiz'){result.classList.remove('show');result.innerHTML='';quiz.classList.remove('hidden');Object.keys(answers).forEach(key=>delete answers[key]);Object.assign(answers,prefill);if(answers.who==='newborn')answers.occasion='newborn';const stepsToAsk=activeSteps();current=stepsToAsk.findIndex(step=>!answers[step.key]);if(current<0)current=stepsToAsk.length-1;renderStep()}else if(page==='home'){quiz.classList.add('hidden');result.classList.remove('show');result.innerHTML=''}document.querySelectorAll('.topnav [data-page]').forEach(button=>button.classList.toggle('active',button.dataset.page===page));window.scrollTo({top:0,behavior:'smooth'});}
+    document.querySelectorAll('[data-page]').forEach(button=>button.addEventListener('click',()=>showPage(button.dataset.page)));function advanceQuiz(){clearTimeout(autoAdvanceTimer);autoAdvanceTimer=null;const steps=activeSteps();let nextIndex=current+1;while(nextIndex<steps.length&&answers[steps[nextIndex].key])nextIndex++;if(nextIndex<steps.length){current=nextIndex;renderStep()}else showResult()}next.addEventListener('click',advanceQuiz);back.addEventListener('click',()=>{if(current>0){current--;renderStep()}});renderFilters();renderCategories();renderScenes();renderMotifs();renderStep();restoreSharedResult();initializeHomeImages();installImageFallbacks(document);
   </script>
 </body>
 </html>
