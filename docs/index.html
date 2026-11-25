@@ -184,12 +184,13 @@
 
     @media(max-width:820px){.intro h1{font-size:clamp(32px,9vw,38px)}}
     .motif-entry-icon{display:grid;place-items:center;border-radius:50%;background:#e8ede6;color:#244c40;font:20px/1 serif}
+    .motif-search-label{display:block;margin:22px 0 7px;font:13px "Noto Sans SC",sans-serif;color:var(--muted)}.motif-search{width:min(100%,460px);padding:11px 13px;border:1px solid var(--line);background:var(--paper2);font:14px "Noto Sans SC",sans-serif;color:var(--ink)}.motif-count{font:12px "Noto Sans SC",sans-serif;color:var(--muted);margin:9px 0 0}
     .motif-filters{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0}
     .motif-filter{border:1px solid var(--line);border-radius:999px;background:rgba(250,248,242,.8);padding:8px 15px;cursor:pointer;font:13px/1.4 "Noto Sans SC",sans-serif;color:var(--muted)}
     .motif-filter.active{background:var(--jade);color:white;border-color:var(--jade)}
     .motif-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
     .motif-card{overflow:hidden;border:1px solid var(--line);border-radius:12px;background:var(--paper2);box-shadow:0 7px 22px rgba(35,53,44,.04)}
-    .motif-card img{display:block;width:100%;aspect-ratio:1;object-fit:cover;background:#eee9de}
+    .motif-thumb{position:relative;overflow:hidden;width:100%;aspect-ratio:1;background:#eee9de}.motif-thumb img{position:absolute;width:1000%;height:1600%;max-width:none;object-fit:fill}
     .motif-card-copy{padding:13px 15px 16px}
     .motif-card h3{margin:0 0 7px;font-size:18px;font-weight:500}
     .motif-card p{margin:0;color:var(--muted);font:13px/1.7 "Noto Sans SC",sans-serif}
@@ -236,7 +237,7 @@
     <section id="motifsPage" class="library hidden" aria-labelledby="motifsHeading">
       <button class="back-home" type="button" data-page="home">← 返回首页</button>
       <header class="library-head"><div><div class="eyebrow">JADE MOTIF MEANINGS</div><h2 id="motifsHeading">玉石纹样寓意</h2></div><p>纹样常借助谐音、花鸟瑞兽和传统故事表达祝愿。以下内容按图片名称整理，寓意因地域与个人理解而异，仅供文化欣赏。</p></header>
-      <div class="motif-filters" id="motifFilters" role="group" aria-label="筛选纹样主题"></div>
+      <label class="motif-search-label" for="motifSearch">按图片文件名搜索</label><input id="motifSearch" class="motif-search" type="search" placeholder="例如：平安、连科、福寿"><p class="motif-count" id="motifCount" aria-live="polite"></p><div class="motif-filters" id="motifFilters" role="group" aria-label="筛选纹样主题"></div>
       <div class="motif-grid" id="motifGrid"></div>
       <p class="motif-note">传统寓意属于民俗与文化表达，不代表功效保证；具体玉石材质与品质请以商品信息和检测结论为准。</p>
     </section>
@@ -433,23 +434,29 @@
       installImageFallbacks(document.getElementById("categoryGrid"));
     }
     function renderFilters(){const filters=[['all','全部 24 类'],['hard','硬玉'],['traditional','传统名玉'],['colored','彩石与图章石'],['semi','水晶与半宝石'],['organic','有机宝石']];const root=document.getElementById('familyFilters');root.innerHTML=filters.map(([group,label])=>`<button type="button" class="filter-btn${group==='all'?' active':''}" data-group="${group}" aria-pressed="${group==='all'}">${label}</button>`).join('');root.addEventListener('click',event=>{const button=event.target.closest('.filter-btn');if(button)renderCategories(button.dataset.group);});}
-    const motifItems=[
-      {file:"motif01.jpg",title:"如意",theme:"吉祥平安",meaning:"以“如意”器形寄托顺心遂意、吉祥安宁的祝愿。"},
-      {file:"motif02.jpg",title:"福禄寿",theme:"福禄寿喜",meaning:"组合福气、俸禄与长寿意象，表达对生活美满、安康长久的祝愿。"},
-      {file:"motif03.jpg",title:"竹报平安",theme:"吉祥平安",meaning:"借竹与“报平安”的传统表达，寓意平安顺遂、家宅安宁。"},
-      {file:"motif04.jpg",title:"松鹤延年",theme:"福禄寿喜",meaning:"松与鹤常用于祝寿题材，寄托健康长寿、清雅高洁之意。"},
-      {file:"motif05.jpg",title:"一帆风顺",theme:"事业学业",meaning:"以扬帆行舟的形象，祝愿行程顺利、事业进展顺遂。"},
-      {file:"motif06.jpg",title:"并蒂莲",theme:"爱情和合",meaning:"并生莲花常用来表达相伴相守、和合美满的祝愿。"},
-      {file:"motif07.jpg",title:"爱情永恒",theme:"爱情和合",meaning:"以爱情为主题，表达长久相伴、珍惜情意的心愿。"},
-      {file:"motif08.jpg",title:"事业有成 · 学业有成",theme:"事业学业",meaning:"寄托学有所成、事业进步的祝愿，适合作为阶段纪念心意。"}
-    ];
-    function renderMotifs(theme="全部"){
-      const themes=["全部","吉祥平安","福禄寿喜","事业学业","爱情和合"];
+    const motifNames=["爱情永恒","安居乐业_02","安居乐业","宝宝佛","宝鸭串连","必得幸福","并蒂莲","不朽","传春报喜_02","传春报喜","聪明伶俐_02","聪明伶俐","大业有成","代代数钱","代代长寿","丹凤朝阳","顶呱呱","独占鳌头","多子多福","封侯拜相","夫妻恩爱","福_02","福","福叠","福分无疆","福瓜","福禄","福禄寿","福寿如意_02","福寿如意","福寿双全_02","福寿双全_03","福寿双全","福缘善庆","福运连连_02","福运连连_03","福运连连_04","福运连连_05","福运连连","福在眼前","富贵满堂","富贵有钱","富甲天下","富足","功名富贵","观音_02","观音","官上加官","龟鹤齐龄","国色天香","好运常来","和合","荷花","鹤鹿同春_02","鹤鹿同春","鹤鸣九皋_一鸣惊人","横行天下_八方来财","红红火火","厚官进禄_威武勇猛_生龙活虎_事事如意","欢欢喜喜_02","欢欢喜喜","吉祥平安_02","吉祥平安","接连高中","节节高升_02","节节高升","金玉满堂_多子多福_子孙满堂","金玉满堂","绝处逢生","兰桂齐芳_甲及状元","兰桂齐芳_一鸣惊人","兰桂齐芳","连连得利","连年有余","连生贵子_子孙繁荣","连中三元","莲相","莲叶","刘海戏金蟾","龙凤呈祥","路路通_02","路路通_03","路路通","马到成功","马上封侯","耄耋","纳福迎祥_02","纳福迎祥","年年有余","盘长纹","辟邪","辟邪进宝_02","辟邪进宝_03","辟邪进宝","品性高雅_声望极高","平安富贵_02","平安富贵","平安圆满","平安长寿","平平安安_安居乐业","平平安安_有福相伴","平平安安","旗开得胜","麒麟送子","麒麟吐（负）书","麒麟献瑞","青娇（青年才俊）","群仙祝寿","荣华富贵","如意","三羊开泰","时来运转","事事如意","事业有成_学业有成","鼠","硕果累累","四君子","松鹤延年","岁寒三友","岁寒三友一竹","岁岁平安","天禄兽帝宝","天仙寿芝","弯弯顺","万福流云_02","万福流云","望子成龙_望女成凤","无量寿","五福朝阳","五福和合","五福捧寿","武财神","喜从天降","喜得连科","喜上眉梢","笑纳百财","扬眉吐气","扬善驱邪","一帆风顺","一路连科","一鸣惊人","一品当朝_高升一品","英明神武","英雄斗志_02","英雄斗志","鱼跃龙门_平步青云_飞黄腾达","玉石展品","玉握","鸳鸯比翼","长命百岁_甜甜蜜蜜","长命百岁","长生不老","长寿","知足常乐_02","知足常乐","指日高升","竹报平安","竹梅双喜_青梅竹马"];
+    function motifTheme(name){
+      if(/爱情|夫妻恩爱|并蒂莲|鸳鸯|比翼|和合|青梅竹马|双喜/.test(name))return "爱情和合";
+      if(/寿|长寿|长命|松鹤|龟鹤|耄耋|群仙祝寿|五福捧寿|无量寿/.test(name))return "福禄寿喜";
+      if(/事业|学业|高中|状元|高升|功名|封侯|一鸣惊人|旗开得胜|马到成功|独占鳌头|扬眉吐气|指日高升|鱼跃龙门|平步青云|飞黄腾达|连科|连中/.test(name))return "事业学业";
+      if(/平安|安居|如意|福|禄|富贵|喜|吉祥|纳福|迎祥|财|运|开泰|年年有余|连年有余|路路通|时来运转/.test(name))return "吉祥福运";
+      return "花鸟瑞兽";
+    }
+    const motifFiltersList=["全部","吉祥福运","福禄寿喜","事业学业","爱情和合","花鸟瑞兽"];
+    function renderMotifs(theme="全部",query=""){
       const filters=document.getElementById("motifFilters");
-      filters.innerHTML=themes.map(item=>'<button class="motif-filter'+(item===theme?' active':'')+'" type="button" data-motif-theme="'+item+'" aria-pressed="'+(item===theme)+'">'+item+'</button>').join("");
-      const items=theme==="全部"?motifItems:motifItems.filter(item=>item.theme===theme);
-      document.getElementById("motifGrid").innerHTML=items.map(item=>'<article class="motif-card"><img src="assets/motifs/'+item.file+'" alt="'+item.title+'玉石纹样示例" loading="lazy" decoding="async"><div class="motif-card-copy"><h3>'+item.title+'</h3><p>'+item.meaning+'</p></div></article>').join("");
-      filters.onclick=event=>{const button=event.target.closest("[data-motif-theme]");if(button)renderMotifs(button.dataset.motifTheme);};
+      filters.innerHTML=motifFiltersList.map(item=>'<button class="motif-filter'+(item===theme?' active':'')+'" type="button" data-motif-theme="'+item+'" aria-pressed="'+(item===theme)+'">'+item+'</button>').join("");
+      const term=query.trim().toLowerCase();
+      const items=motifNames.map((name,index)=>({name,index,theme:motifTheme(name)})).filter(item=>(theme==="全部"||item.theme===theme)&&(!term||item.name.toLowerCase().includes(term)));
+      document.getElementById("motifCount").textContent="显示 "+items.length+" / "+motifNames.length+" 个纹样";
+      document.getElementById("motifGrid").innerHTML=items.map(item=>{
+        const col=item.index%10,row=Math.floor(item.index/10);
+        const left=-(col*100),top=-(row*100);
+        return '<article class="motif-card"><div class="motif-thumb" role="img" aria-label="'+item.name+'"><img src="assets/motifs/all-motifs.jpg" alt="" loading="lazy" decoding="async" style="left:'+left+'%;top:'+top+'%"></div><div class="motif-card-copy"><h3>'+item.name+'</h3><p>纹样寓意以图片文件名为准；可结合图样与收礼人的理解欣赏。</p></div></article>';
+      }).join("");
+      filters.onclick=event=>{const button=event.target.closest("[data-motif-theme]");if(button)renderMotifs(button.dataset.motifTheme,document.getElementById("motifSearch").value);};
+      const search=document.getElementById("motifSearch");
+      search.oninput=()=>renderMotifs(document.querySelector(".motif-filter.active")?.dataset.motifTheme||"全部",search.value);
     }
     function showPage(page,prefill={}){const home=document.getElementById('homeView'),scenes=document.getElementById('scenePage'),catalogue=document.getElementById('cataloguePage'),motifs=document.getElementById('motifsPage'),homePanel=document.getElementById('homePanel'),quiz=document.getElementById('quiz'),result=document.getElementById('result');home.classList.toggle('hidden',page==='scenes'||page==='catalogue'||page==='motifs');scenes.classList.toggle('hidden',page!=='scenes');catalogue.classList.toggle('hidden',page!=='catalogue');motifs.classList.toggle('hidden',page!=='motifs');if(page==='motifs')renderMotifs();homePanel.classList.toggle('hidden',page==='quiz');if(page==='quiz'){result.classList.remove('show');result.innerHTML='';quiz.classList.remove('hidden');Object.keys(answers).forEach(key=>delete answers[key]);Object.assign(answers,prefill);if(answers.who==='newborn')answers.occasion='newborn';const stepsToAsk=activeSteps();current=stepsToAsk.findIndex(step=>!answers[step.key]);if(current<0)current=stepsToAsk.length-1;renderStep()}else if(page==='home'){quiz.classList.add('hidden');result.classList.remove('show');result.innerHTML=''}document.querySelectorAll('.topnav [data-page]').forEach(button=>button.classList.toggle('active',button.dataset.page===page));window.scrollTo({top:0,behavior:'smooth'});}
     document.querySelectorAll('[data-page]').forEach(button=>button.addEventListener('click',()=>showPage(button.dataset.page)));function advanceQuiz(){clearTimeout(autoAdvanceTimer);autoAdvanceTimer=null;const steps=activeSteps();let nextIndex=current+1;while(nextIndex<steps.length&&answers[steps[nextIndex].key])nextIndex++;if(nextIndex<steps.length){current=nextIndex;renderStep()}else showResult()}next.addEventListener('click',advanceQuiz);back.addEventListener('click',()=>{if(current>0){current--;renderStep()}});renderFilters();renderCategories();renderScenes();renderMotifs();renderStep();restoreSharedResult();initializeHomeImages();installImageFallbacks(document);
