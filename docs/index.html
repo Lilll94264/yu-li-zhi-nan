@@ -442,6 +442,19 @@
       if(/平安|安居|如意|福|禄|富贵|喜|吉祥|纳福|迎祥|财|运|开泰|年年有余|连年有余|路路通|时来运转/.test(name))return "吉祥福运";
       return "花鸟瑞兽";
     }
+    function motifMeaning(name){
+      if(/宝宝佛|观音/.test(name))return "以佛像题材寄托平安、慈悲与内心安宁的祝愿，寓意可结合个人信仰与审美理解。";
+      if(/爱情|夫妻恩爱|鸳鸯|比翼|并蒂莲|青梅竹马|和合|龙凤呈祥/.test(name))return "借相伴成双、和合相依的意象，表达情谊长久、生活美满的心愿。";
+      if(/寿|长命|长寿|长生|松鹤|龟鹤|耄耋|群仙祝寿|无量寿/.test(name))return "常见祝寿主题，寄托健康安康、福寿绵长的祝愿。";
+      if(/事业|学业|高中|状元|高升|功名|封侯|一鸣惊人|旗开得胜|马到成功|独占鳌头|扬眉吐气|指日高升|鱼跃龙门|平步青云|飞黄腾达|连科|连中|节节高升|大业有成/.test(name))return "以进取、登高或金榜题名为主题，表达事业进步、学业有成的祝愿。";
+      if(/平安|安居|吉祥|如意|顺风|顺|圆满/.test(name))return "围绕平安顺遂、安居圆满的愿望展开，适合作为日常祝福的表达。";
+      if(/多子|子孙|连生贵子|麒麟送子|望子成龙|望女成凤/.test(name))return "寄托家庭和乐、子女成长顺遂的美好愿望。";
+      if(/福|禄|财|富|宝|金玉|连连得利|年年有余|连年有余|笑纳百财|五福|纳福|迎祥|好运|红火|开泰|荣华/.test(name))return "以纳福、丰足与吉庆为主题，表达生活顺心、家业兴旺的祝愿。";
+      if(/聪明伶俐|青娇|品性高雅|声望极高|英明神武|英雄斗志|威武勇猛|生龙活虎|顶呱呱|扬善/.test(name))return "从名称所表达的品格与气象出发，寄托聪慧、积极、品性出众的赞许。";
+      if(/荷|莲|兰|桂|菊|梅|竹|松|鹤|鹿|凤|龙|麒麟|龟|鱼|鸭|鼠|羊|猴|花|朝阳|春/.test(name))return "以花木、瑞兽或季节意象承载吉祥联想；具体取意可结合图样细节和个人理解。";
+      if(/路路通|盘长纹|莲相|莲叶|玉握|鼠|辟邪|绝处逢生|时来运转/.test(name))return "传统纹样常借形态或谐音寄托祝愿；可从图样细节与名称联想中体会其寓意。";
+      return "以“"+name.replace(/_\d+$/,"")+"”为主题，表达对美好生活的祝愿；具体联想可结合图样细节与个人理解。";
+    }
     const motifFiltersList=["全部","吉祥福运","福禄寿喜","事业学业","爱情和合","花鸟瑞兽"];
     function renderMotifs(theme="全部",query=""){
       const filters=document.getElementById("motifFilters");
@@ -452,7 +465,7 @@
       document.getElementById("motifGrid").innerHTML=items.map(item=>{
         const col=item.index%10,row=Math.floor(item.index/10);
         const left=-(col*100),top=-(row*100);
-        return '<article class="motif-card"><div class="motif-thumb" role="img" aria-label="'+item.name+'"><img src="assets/motifs/all-motifs.jpg" alt="" loading="lazy" decoding="async" style="left:'+left+'%;top:'+top+'%"></div><div class="motif-card-copy"><h3>'+item.name+'</h3><p>纹样寓意以图片文件名为准；可结合图样与收礼人的理解欣赏。</p></div></article>';
+        return '<article class="motif-card"><div class="motif-thumb" role="img" aria-label="'+item.name+'"><img src="assets/motifs/all-motifs.jpg" alt="" loading="lazy" decoding="async" style="left:'+left+'%;top:'+top+'%"></div><div class="motif-card-copy"><h3>'+item.name+'</h3><p>'+motifMeaning(item.name)+'</p></div></article>';
       }).join("");
       filters.onclick=event=>{const button=event.target.closest("[data-motif-theme]");if(button)renderMotifs(button.dataset.motifTheme,document.getElementById("motifSearch").value);};
       const search=document.getElementById("motifSearch");
